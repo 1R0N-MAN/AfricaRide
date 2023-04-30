@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginVertical="10dp"
+    android:layout_marginHorizontal="5dp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/app_margin_size">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="10dp"
+                app:cardBackgroundColor="@color/blue_200">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/driverTypeTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="3dp"
+                        android:paddingHorizontal="5dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/white"
+                        tools:text="public"/>
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/taxiImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/app_margin_size"
+                android:src="@drawable/ic_taxi"
+                app:tint="@color/yellow_700"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/app_margin_size"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/linearLayout1">
+
+            <TextView
+                android:id="@+id/licencePlateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin_size"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintTop_toBottomOf="@id/startingLocationTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="License Plate: ABC-DEF"/>
+
+            <TextView
+                android:id="@+id/arrivalTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/item_layout_margin_size"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintTop_toBottomOf="@id/startingLocationTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Arrives at: 08:00am"/>
+
+            <TextView
+                android:id="@+id/passengerCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin_size"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat_regular"
+                app:layout_constraintTop_toBottomOf="@id/startingLocationTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="2 seats available"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bookVehicleButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_layout_margin_size"
+            android:backgroundTint="@color/blue_200"
+            android:text="@string/order_ride"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/destinationLocationTextView" />
+
+        <TextView
+            android:id="@+id/startingLocationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin_size"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_regular"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Start: Ibadan SouthWest Bus stop"/>
+
+        <TextView
+            android:id="@+id/destinationLocationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin_size"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_regular"
+            app:layout_constraintTop_toBottomOf="@id/startingLocationTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Destination: Odo-ona Bus stop"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/CustomCardViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/purple_light"
+    app:cardElevation="20dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/app_page_padding"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/closeVerificationSnackbarButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_close"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_gravity="end"
+            app:tint="@color/black"/>
+
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/verify_your_email"
+            android:layout_marginTop="@dimen/app_margin_size"
+            android:gravity="center"
+            android:textSize="@dimen/app_header_size"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/blue_200"/>
+
+        <TextView
+            android:id="@+id/verificationInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/app_margin_size"
+            android:text="@string/verification_info"
+            android:textSize="@dimen/app_normal_text_size"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_regular"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/resendVerificationMailButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_page_padding"
+            android:background="@drawable/oval_button"
+            android:text="@string/resend_verification_mail"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@id/rememberMeCheckBox"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myProfile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/my_profile" />
+
+    <item
+        android:id="@+id/myWallet"
+        android:icon="@drawable/ic_wallet"
+        android:title="@string/my_wallet" />
+
+    <item
+        android:id="@+id/pendingRides"
+        android:icon="@drawable/ic_pending_rides"
+        android:title="@string/pending_rides" />
+
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/ic_history"
+        android:title="@string/history" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
+
+</menu>

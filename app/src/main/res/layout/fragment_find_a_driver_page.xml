@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/app_page_padding"
+    tools:context=".FindADriverPage">
+
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/find_a_driver"
+        android:gravity="center"
+        android:textSize="@dimen/app_header_size"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/blue_200"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/startingLocationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/starting_location"
+        android:textSize="@dimen/app_normal_text_size"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@id/pageTitle"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/selectStateSpinnerStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dropDownSelector="@color/purple_500"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:layout_constraintTop_toBottomOf="@id/startingLocationTextView"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/selectLGASpinnerStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dropDownSelector="@color/purple_500"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:layout_constraintTop_toBottomOf="@id/selectStateSpinnerStart"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"/>
+
+    <TextView
+        android:id="@+id/destinationLocationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/destination_location"
+        android:textSize="@dimen/app_normal_text_size"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@id/selectLGASpinnerStart"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/selectStateSpinnerDestination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dropDownSelector="@color/purple_500"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:layout_constraintTop_toBottomOf="@id/destinationLocationTextView"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/selectLGASpinnerDestination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dropDownSelector="@color/purple_500"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:layout_constraintTop_toBottomOf="@id/selectStateSpinnerDestination"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item"/>
+
+    <TextView
+        android:id="@+id/driverTypeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/driver_type"
+        android:textSize="@dimen/app_normal_text_size"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@id/selectLGASpinnerDestination"/>
+
+    <CheckBox
+        android:id="@+id/privateVehiclesCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/private_vehicles"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/black"
+        android:buttonTint="@color/yellow_700"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driverTypeTextView"/>
+
+    <CheckBox
+        android:id="@+id/publicVehiclesCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/public_vehicles"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/black"
+        android:buttonTint="@color/yellow_700"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/privateVehiclesCheckBox"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/findDriverButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/app_page_padding"
+        android:background="@drawable/oval_button"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/find_a_driver"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph_home_page"
+    app:startDestination="@id/welcomePage">
+
+    <fragment
+        android:id="@+id/welcomePage"
+        android:name="com.banking.africaride.WelcomePage"
+        android:label="fragment_welcome_page"
+        tools:layout="@layout/fragment_welcome_page" >
+        <action
+            android:id="@+id/action_welcomePage_to_myProfilePage"
+            app:destination="@id/myProfilePage" />
+    </fragment>
+    <fragment
+        android:id="@+id/myProfilePage"
+        android:name="com.banking.africaride.MyProfilePage"
+        android:label="fragment_my_profile_page"
+        tools:layout="@layout/fragment_my_profile_page" />
+</navigation>

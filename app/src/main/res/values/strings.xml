@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">Africa Ride</string>
+
+    <!-- Login Page -->
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="no_account_query">Don\'t have an account?\u0020</string>
+
+    <!-- Signup Page -->
+    <string name="signup">Sign up</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="has_account_query">Already have an account?\u0020</string>
+
+    <!-- Forgot Password Page -->
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password_content">Oops! Looks like you\'ve forgotten your password. But that\'s okay, enter the email address you used to create your account and we\'ll send you a link to reset your password.\n\nIn case you do not get an email, kindly check your spam folder because our mails sometimes end up there for some reason.</string>
+    <string name="send_reset_mail">Reset Password</string>
+
+    <!-- Verification SnackBar -->
+    <string name="verification_info">We\'ve sent an email to %s. Please check your mail to activate your account.\n\nIn case you do not get an email, kindly check your spam folder because our mails sometimes end up there for some reason.</string>
+    <string name="verification_error">Sorry, There was a problem with verifying your email! Please try again later</string>
+    <string name="resend_verification_mail">Resend Verification Mail</string>
+    <string name="verify_your_email">Verify Your Mail</string>
+    <string name="loading">Loading</string>
+    <string name="please_wait">Please wait while we verify your account…</string>
+
+    <!-- Navigation Drawer Layout -->
+    <string name="hey_username">Hey %s!</string>
+    <string name="my_profile">My Profile</string>
+    <string name="my_wallet">My Wallet</string>
+    <string name="pending_rides">Pending Rides</string>
+    <string name="history">History</string>
+    <string name="logout">Logout</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+
+    <!-- Welcome Page -->
+    <string name="welcome_text">Book a ride in 5 mins</string>
+    <string name="find_a_driver">Find a Driver</string>
+
+    <!-- My Profile Page -->
+    <string name="phone_number">Phone Number</string>
+    <string name="state">State</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="change_profile_pic">Change Profile Picture</string>
+    <string name="home_page">Home Page</string>
+
+    <!-- Find Driver Page -->
+    <string name="starting_location">Starting Location</string>
+    <string name="destination_location">Destination Location</string>
+    <string name="driver_type">Driver Type</string>
+    <string name="private_vehicles">Private Vehicles</string>
+    <string name="public_vehicles">Public Vehicles</string>
+
+    <!-- Driver Details Recycler View -->
+    <string name="licence_plate_placeholder">Licence Plate: %s</string>
+    <string name="arrival_time_placeholder">Arrives at: %s</string>
+    <string name="passenger_count_placeholder">%d seats available</string>
+    <string name="starting_location_placeholder">Start: %s</string>
+    <string name="destination_location_placeholder">Destination: %s</string>
+    <string name="order_ride">order ride</string>
+
+    <!-- Order Ride Dialog Layout -->
+    <string name="no_of_passengers">No Of Passengers</string>
+    <string name="passenger_count_init_value">1</string>
+    <string name="next">next</string>
+
+</resources>

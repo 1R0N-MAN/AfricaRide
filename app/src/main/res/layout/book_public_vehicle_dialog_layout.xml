@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:padding="@dimen/app_page_padding">
+
+    <TextView
+        android:id="@+id/noOfPassengerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_of_passengers"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/blue_200"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/reducePassengerCountButton"
+        android:layout_width="@dimen/order_ride_btn_size"
+        android:layout_height="@dimen/order_ride_btn_size"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_reduce_passenger_count"
+        android:backgroundTint="@android:color/transparent"
+        app:tint="@color/purple_500"
+        app:layout_constraintTop_toBottomOf="@id/noOfPassengerTextView"
+        app:layout_constraintEnd_toStartOf="@id/passengerCountTextView"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/passengerCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="@string/passenger_count_init_value"
+        android:textColor="@color/blue_200"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@id/reducePassengerCountButton"
+        app:layout_constraintEnd_toStartOf="@+id/increasePassengerCountButton"
+        app:layout_constraintStart_toEndOf="@+id/reducePassengerCountButton"
+        app:layout_constraintTop_toBottomOf="@id/noOfPassengerTextView" />
+
+    <ImageButton
+        android:id="@+id/increasePassengerCountButton"
+        android:layout_width="@dimen/order_ride_btn_size"
+        android:layout_height="@dimen/order_ride_btn_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_increase_passenger_count"
+        android:backgroundTint="@android:color/transparent"
+        app:tint="@color/purple_500"
+        app:layout_constraintTop_toTopOf="@id/reducePassengerCountButton"
+        app:layout_constraintStart_toEndOf="@id/passengerCountTextView"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:text="@string/next"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reducePassengerCountButton"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
