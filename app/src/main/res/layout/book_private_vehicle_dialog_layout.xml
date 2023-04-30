@@ -1,6 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:padding="@dimen/app_page_padding">
+
+    <TextView
+        android:id="@+id/noOfPassengerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_of_passengers"
+        android:textSize="@dimen/app_normal_text_size"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/blue_200"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/reducePassengerCountButton"
+        android:layout_width="@dimen/order_ride_btn_size"
+        android:layout_height="@dimen/order_ride_btn_size"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_reduce_passenger_count"
+        android:backgroundTint="@android:color/transparent"
+        app:tint="@color/yellow_700"
+        app:layout_constraintTop_toBottomOf="@id/noOfPassengerTextView"
+        app:layout_constraintEnd_toStartOf="@id/passengerCountTextView"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/passengerCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="@string/passenger_count_init_value"
+        android:textColor="@color/blue_200"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/reducePassengerCountButton"
+        app:layout_constraintEnd_toStartOf="@+id/increasePassengerCountButton"
+        app:layout_constraintStart_toEndOf="@+id/reducePassengerCountButton"
+        app:layout_constraintTop_toTopOf="@id/reducePassengerCountButton" />
+
+    <ImageButton
+        android:id="@+id/increasePassengerCountButton"
+        android:layout_width="@dimen/order_ride_btn_size"
+        android:layout_height="@dimen/order_ride_btn_size"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_increase_passenger_count"
+        android:backgroundTint="@android:color/transparent"
+        app:tint="@color/yellow_700"
+        app:layout_constraintTop_toTopOf="@id/reducePassengerCountButton"
+        app:layout_constraintStart_toEndOf="@id/passengerCountTextView"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/pickupAddressTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:text="@string/pick_up_address"
+        android:textSize="@dimen/app_normal_text_size"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/blue_200"
+        app:layout_constraintTop_toBottomOf="@id/reducePassengerCountButton"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pickupAddressTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:boxBackgroundMode="none"
+        app:layout_constraintTop_toBottomOf="@id/pickupAddressTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pickupAddressTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/app_normal_text_size"
+            android:textColorHighlight="@color/purple_200"
+            android:background="@drawable/edit_text_oval_bg"
+            android:inputType="textEmailAddress"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/phoneNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:text="@string/phone_number"
+        android:textSize="@dimen/app_normal_text_size"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/blue_200"
+        app:layout_constraintTop_toBottomOf="@id/pickupAddressTextInputLayout"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneNumberTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:boxBackgroundMode="none"
+        app:layout_constraintTop_toBottomOf="@id/phoneNumberTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneNumberTextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/app_normal_text_size"
+            android:textColorHighlight="@color/purple_200"
+            android:background="@drawable/edit_text_oval_bg"
+            android:inputType="textEmailAddress"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:background="@drawable/oval_button"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_bold"
+        app:layout_constraintTop_toBottomOf="@id/phoneNumberTextInputLayout"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

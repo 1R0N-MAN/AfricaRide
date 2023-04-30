@@ -67,5 +67,6 @@
     <string name="no_of_passengers">No Of Passengers</string>
     <string name="passenger_count_init_value">1</string>
     <string name="next">next</string>
+    <string name="pick_up_address">Pick up Address</string>
 
 </resources>

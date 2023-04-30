@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:text="@string/no_of_passengers"
         android:gravity="center"
-        android:textSize="20sp"
-        android:fontFamily="@font/montserrat_bold"
+        android:textSize="@dimen/app_normal_text_size"
+        android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/blue_200"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -26,7 +26,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/ic_reduce_passenger_count"
         android:backgroundTint="@android:color/transparent"
-        app:tint="@color/purple_500"
+        app:tint="@color/yellow_700"
         app:layout_constraintTop_toBottomOf="@id/noOfPassengerTextView"
         app:layout_constraintEnd_toStartOf="@id/passengerCountTextView"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -39,11 +39,11 @@
         android:gravity="center"
         android:text="@string/passenger_count_init_value"
         android:textColor="@color/blue_200"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="@id/reducePassengerCountButton"
         app:layout_constraintEnd_toStartOf="@+id/increasePassengerCountButton"
         app:layout_constraintStart_toEndOf="@+id/reducePassengerCountButton"
-        app:layout_constraintTop_toBottomOf="@id/noOfPassengerTextView" />
+        app:layout_constraintTop_toTopOf="@id/reducePassengerCountButton" />
 
     <ImageButton
         android:id="@+id/increasePassengerCountButton"
@@ -52,20 +52,20 @@
         android:scaleType="centerCrop"
         android:src="@drawable/ic_increase_passenger_count"
         android:backgroundTint="@android:color/transparent"
-        app:tint="@color/purple_500"
+        app:tint="@color/yellow_700"
         app:layout_constraintTop_toTopOf="@id/reducePassengerCountButton"
         app:layout_constraintStart_toEndOf="@id/passengerCountTextView"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/app_margin_size"
+        android:background="@drawable/oval_button"
         android:text="@string/next"
-        android:fontFamily="@font/montserrat_regular"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_bold"
         app:layout_constraintTop_toBottomOf="@id/reducePassengerCountButton"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

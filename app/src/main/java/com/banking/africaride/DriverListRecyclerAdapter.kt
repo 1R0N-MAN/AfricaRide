@@ -61,7 +61,7 @@ class DriverListRecyclerAdapter(
             openBookPublicVehicleDialog(driverId)
         }
         else {
-            Toast.makeText(context, "This feature has not been included!", Toast.LENGTH_SHORT).show()
+            openBookPrivateVehicleDialog(driverId)
         }
     }
 
