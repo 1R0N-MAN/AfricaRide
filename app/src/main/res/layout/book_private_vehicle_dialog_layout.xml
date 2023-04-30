@@ -82,7 +82,7 @@
             android:padding="@dimen/app_normal_text_size"
             android:textColorHighlight="@color/purple_200"
             android:background="@drawable/edit_text_oval_bg"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textPostalAddress"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +112,7 @@
             android:padding="@dimen/app_normal_text_size"
             android:textColorHighlight="@color/purple_200"
             android:background="@drawable/edit_text_oval_bg"
-            android:inputType="textEmailAddress"/>
+            android:inputType="phone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
