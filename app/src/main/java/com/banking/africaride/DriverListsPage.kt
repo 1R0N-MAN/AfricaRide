@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DriverListsPage : Fragment() {
 
+    private lateinit var driverListRecyclerAdapter: DriverListRecyclerAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,7 +24,7 @@ class DriverListsPage : Fragment() {
 
         if (driverDetailsList != null) {
             val driverListRecyclerView = view.findViewById<RecyclerView>(R.id.driverListRecyclerView)
-            val driverListRecyclerAdapter= DriverListRecyclerAdapter(requireContext(), requireActivity(), driverDetailsList)
+            driverListRecyclerAdapter = DriverListRecyclerAdapter(requireContext(), requireActivity(), driverDetailsList)
             driverListRecyclerView.adapter = driverListRecyclerAdapter
 
             Log.d(TAG, "Driver List: $driverDetailsList")
