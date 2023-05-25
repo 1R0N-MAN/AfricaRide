@@ -58,10 +58,10 @@ class DriverListRecyclerAdapter(
         holder.bookVehicleButton.setOnClickListener {
             changeDriverIsActiveStatus(driverDetails.driverId)
             if (driverDetails.driverType == "public"){
-                openBookPublicVehicleDialog(driverDetails.driverId)
+                openBookPublicVehicleDialog(driverDetails.driverId, driverDetails.passengerCount)
             }
             else {
-                openBookPrivateVehicleDialog(driverDetails.driverId)
+                openBookPrivateVehicleDialog(driverDetails.driverId, driverDetails.passengerCount)
             }
         }
     }
@@ -74,7 +74,7 @@ class DriverListRecyclerAdapter(
         Toast.makeText(context, "Driver Is Active Status Changed", Toast.LENGTH_SHORT).show()
     }
 
-    private fun openBookPublicVehicleDialog(driverId: String){
+    private fun openBookPublicVehicleDialog(driverId: String, fixedPassengerCount: Int){
         val dialogBuilder = AlertDialog.Builder(context)
         val inflater = activity.layoutInflater
         val dialogView = inflater.inflate(R.layout.book_public_vehicle_dialog_layout, null)
@@ -90,10 +90,10 @@ class DriverListRecyclerAdapter(
             changeDriverIsActiveStatus(driverId, true)
         }
 
-        checkPassengerCount(dialogView)
+        checkPassengerCount(dialogView, fixedPassengerCount)
 
-        reducePassengerCountButton.setOnClickListener { decrementPassengerCount(dialogView) }
-        increasePassengerCountButton.setOnClickListener { incrementPassengerCount(dialogView) }
+        reducePassengerCountButton.setOnClickListener { decrementPassengerCount(dialogView, fixedPassengerCount) }
+        increasePassengerCountButton.setOnClickListener { incrementPassengerCount(dialogView, fixedPassengerCount) }
 
         nextButton.setOnClickListener {
             val passengerCount = passengerCountTextView.text.toString().toInt()
@@ -105,7 +105,7 @@ class DriverListRecyclerAdapter(
         dialog.show()
     }
 
-    private fun openBookPrivateVehicleDialog(driverId: String){
+    private fun openBookPrivateVehicleDialog(driverId: String, fixedPassengerCount: Int){
         val dialogBuilder = AlertDialog.Builder(context)
         val inflater = activity.layoutInflater
         val dialogView = inflater.inflate(R.layout.book_private_vehicle_dialog_layout, null)
@@ -123,10 +123,10 @@ class DriverListRecyclerAdapter(
             changeDriverIsActiveStatus(driverId, true)
         }
 
-        checkPassengerCount(dialogView)
+        checkPassengerCount(dialogView, fixedPassengerCount)
 
-        reducePassengerCountButton.setOnClickListener { decrementPassengerCount(dialogView) }
-        increasePassengerCountButton.setOnClickListener { incrementPassengerCount(dialogView) }
+        reducePassengerCountButton.setOnClickListener { decrementPassengerCount(dialogView, fixedPassengerCount) }
+        increasePassengerCountButton.setOnClickListener { incrementPassengerCount(dialogView, fixedPassengerCount) }
 
         nextButton.setOnClickListener {
             val passengerCount = passengerCountTextView.text.toString().toInt()
@@ -153,27 +153,30 @@ class DriverListRecyclerAdapter(
         changeDriverIsActiveStatus(driverId, true)
         Toast.makeText(
             context,
-            "Driver Id: $driverId, Driver Type: $driverType, Passenger Count: $passengerCount, Pickup Address: $pickupAddress, Phone Number: $phoneNumber",
+            "Driver Id: $driverId, Driver Type: $driverType, " +
+                    "Passenger Count: $passengerCount, " +
+                    "Pickup Address: $pickupAddress, " +
+                    "Phone Number: $phoneNumber",
             Toast.LENGTH_SHORT).show()
     }
 
-    private fun decrementPassengerCount(dialogView: View) {
+    private fun decrementPassengerCount(dialogView: View, fixedPassengerCount: Int) {
         val passengerCountTextView = dialogView.findViewById<TextView>(R.id.passengerCountTextView)
         var passengerCount = passengerCountTextView.text.toString().toInt()
         passengerCount--
         passengerCountTextView.text = "$passengerCount"
-        checkPassengerCount(dialogView)
+        checkPassengerCount(dialogView, fixedPassengerCount)
     }
 
-    private fun incrementPassengerCount(dialogView: View) {
+    private fun incrementPassengerCount(dialogView: View, fixedPassengerCount: Int) {
         val passengerCountTextView = dialogView.findViewById<TextView>(R.id.passengerCountTextView)
         var passengerCount = passengerCountTextView.text.toString().toInt()
         passengerCount++
         passengerCountTextView.text = "$passengerCount"
-        checkPassengerCount(dialogView)
+        checkPassengerCount(dialogView, fixedPassengerCount)
     }
 
-    private fun checkPassengerCount(dialogView: View) {
+    private fun checkPassengerCount(dialogView: View, fixedPassengerCount: Int) {
         val reducePassengerCountButton = dialogView.findViewById<ImageButton>(R.id.reducePassengerCountButton)
         val increasePassengerCountButton = dialogView.findViewById<ImageButton>(R.id.increasePassengerCountButton)
         val passengerCountTextView = dialogView.findViewById<TextView>(R.id.passengerCountTextView)
@@ -186,22 +189,22 @@ class DriverListRecyclerAdapter(
                 reducePassengerCountButton.isClickable=false
 
                 val purpleLight = ContextCompat.getColor(context, R.color.purple_200)
-                reducePassengerCountButton.backgroundTintList = ColorStateList.valueOf(purpleLight)
+                reducePassengerCountButton.imageTintList = ColorStateList.valueOf(purpleLight)
             }
-            passengerCount >= 6 -> {
-                passengerCountTextView.text = "6"
+            passengerCount >= fixedPassengerCount -> {
+                passengerCountTextView.text = "$fixedPassengerCount"
                 increasePassengerCountButton.isClickable=false
 
                 val purpleLight = ContextCompat.getColor(context, R.color.purple_200)
-                increasePassengerCountButton.backgroundTintList = ColorStateList.valueOf(purpleLight)
+                increasePassengerCountButton.imageTintList = ColorStateList.valueOf(purpleLight)
             }
             else -> {
                 increasePassengerCountButton.isClickable = true
                 reducePassengerCountButton.isClickable = true
 
                 val yellow700 = ContextCompat.getColor(context, R.color.yellow_700)
-                increasePassengerCountButton.backgroundTintList = ColorStateList.valueOf(yellow700)
-                reducePassengerCountButton.backgroundTintList = ColorStateList.valueOf(yellow700)
+                increasePassengerCountButton.imageTintList = ColorStateList.valueOf(yellow700)
+                reducePassengerCountButton.imageTintList = ColorStateList.valueOf(yellow700)
             }
         }
     }
