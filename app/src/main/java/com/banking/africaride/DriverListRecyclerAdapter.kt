@@ -3,6 +3,7 @@ package com.banking.africaride
 import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,10 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class DriverListRecyclerAdapter(
     private val context: Context,
@@ -20,6 +23,11 @@ class DriverListRecyclerAdapter(
 ): RecyclerView.Adapter<DriverListRecyclerAdapter.MyViewHolder>() {
 
     private lateinit var dialog: AlertDialog
+    private var db = Firebase.firestore
+
+    init {
+        db = Firebase.firestore
+    }
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val driverTypeTag: TextView = itemView.findViewById(R.id.driverTypeTag)
@@ -67,7 +75,6 @@ class DriverListRecyclerAdapter(
     }
 
     private fun changeDriverIsActiveStatus(driverId: String, isActive: Boolean=false) {
-        val db = Firebase.firestore
         val selectedDriverRef = db.collection(DRIVERS_DATA_PATH).document(driverId)
          selectedDriverRef.update("isActive", isActive)
 
@@ -97,7 +104,7 @@ class DriverListRecyclerAdapter(
 
         nextButton.setOnClickListener {
             val passengerCount = passengerCountTextView.text.toString().toInt()
-            bookVehicle(driverId, "public", passengerCount)
+            bookVehicle(driverId, "public", passengerCount, fixedPassengerCount)
         }
 
         dialogBuilder.setView(dialogView)
@@ -114,6 +121,7 @@ class DriverListRecyclerAdapter(
         val increasePassengerCountButton = dialogView.findViewById<ImageButton>(R.id.increasePassengerCountButton)
         val passengerCountTextView = dialogView.findViewById<TextView>(R.id.passengerCountTextView)
         val pickupAddressTextInput = dialogView.findViewById<EditText>(R.id.pickupAddressTextInputEditText)
+        val destinationAddressTextInput = dialogView.findViewById<EditText>(R.id.destinationAddressTextInputEditText)
         val phoneNumberTextInput = dialogView.findViewById<EditText>(R.id.phoneNumberTextInputEditText)
         val nextButton = dialogView.findViewById<Button>(R.id.nextButton)
         val cancelButton = dialogView.findViewById<ImageButton>(R.id.cancelButton)
@@ -131,9 +139,10 @@ class DriverListRecyclerAdapter(
         nextButton.setOnClickListener {
             val passengerCount = passengerCountTextView.text.toString().toInt()
             val pickupAddress = pickupAddressTextInput.text.toString()
+            val destinationAddress = destinationAddressTextInput.text.toString()
             val phoneNumber = phoneNumberTextInput.text.toString()
 
-            bookVehicle(driverId, "private", passengerCount, pickupAddress, phoneNumber)
+            bookVehicle(driverId, "private", passengerCount, fixedPassengerCount, pickupAddress, destinationAddress, phoneNumber)
         }
 
         dialogBuilder.setView(dialogView)
@@ -146,18 +155,52 @@ class DriverListRecyclerAdapter(
         driverId: String,
         driverType: String,
         passengerCount: Int,
+        fixedPassengerCount: Int,
         pickupAddress: String? = null,
+        destinationAddress: String? = null,
         phoneNumber: String? = null)
     {
         dialog.dismiss()
         changeDriverIsActiveStatus(driverId, true)
-        Toast.makeText(
-            context,
-            "Driver Id: $driverId, Driver Type: $driverType, " +
-                    "Passenger Count: $passengerCount, " +
-                    "Pickup Address: $pickupAddress, " +
-                    "Phone Number: $phoneNumber",
-            Toast.LENGTH_SHORT).show()
+
+        val randomNumber = Random().nextInt(90000) + 10000
+        val passengerId = "AR-$randomNumber"
+        val driverPassengersCollection = db.collection(DRIVERS_DATA_PATH).document(driverId).collection(PASSENGER_DATA_PATH)
+
+        val passengerRef = driverPassengersCollection.document()
+        val passengerData = hashMapOf(
+            "passengerId" to passengerId,
+            "passengerCount" to passengerCount,
+            "pickupLocation" to pickupAddress,
+            "destination" to destinationAddress,
+            "rideCompleted" to false,
+            "phoneNumber" to phoneNumber,
+        )
+        passengerRef.set(passengerData)
+            .addOnSuccessListener {
+                Toast.makeText(context, "Vehicle booked successfully!", Toast.LENGTH_LONG).show()
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error Booking Vehicle", exception)
+                Toast.makeText(context, "Vehicle booked failed! Please try again later!", Toast.LENGTH_LONG).show()
+            }
+
+        if(driverType == "private"){
+            // set isActive status to false
+            changeDriverIsActiveStatus(driverId, false)
+        }
+        else {
+            // reduce passenger count
+            val currentPassengerCount = fixedPassengerCount - passengerCount
+            val selectedDriverRef = db.collection(DRIVERS_DATA_PATH).document(driverId)
+            selectedDriverRef.update("passengerCount", currentPassengerCount)
+            Toast.makeText(context, "Driver Passenger Count Changed", Toast.LENGTH_SHORT).show()
+
+            // set isActive status to false if passenger count is 0
+            if (currentPassengerCount == 0){
+                changeDriverIsActiveStatus(driverId, false)
+            }
+        }
     }
 
     private fun decrementPassengerCount(dialogView: View, fixedPassengerCount: Int) {

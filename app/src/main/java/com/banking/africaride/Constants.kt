@@ -10,6 +10,7 @@ const val AFRICA_RIDE_SHARED_PREFERENCES = "AFRICA_RIDE_SHARED_PREFERENCES_LOGIN
 const val REMEMBER_ME_BOOLEAN_VALUE_SHPR = "REMEMBER_ME_SHARED_PREFERENCES"
 const val MY_PROFILE_DATA_PATH = "user-data"
 const val DRIVERS_DATA_PATH = "drivers"
+const val PASSENGER_DATA_PATH = "passenger-data"
 const val TAG = "Africa Ride Debugging"
 const val DRIVER_DETAILS_LIST = "driverDetailsList"
 
