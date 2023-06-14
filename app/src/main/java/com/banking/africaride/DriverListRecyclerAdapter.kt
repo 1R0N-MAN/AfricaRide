@@ -11,7 +11,6 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
@@ -27,6 +26,16 @@ class DriverListRecyclerAdapter(
 
     init {
         db = Firebase.firestore
+    }
+
+    interface OnCloseFragmentListener {
+        fun onCloseFragment()
+    }
+
+    private var onCloseFragmentListener: OnCloseFragmentListener? = null
+
+    fun setOnCloseFragmentListener(listener: OnCloseFragmentListener) {
+        onCloseFragmentListener = listener
     }
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -264,6 +273,8 @@ class DriverListRecyclerAdapter(
                 changeDriverIsActiveStatus(driverId, false)
             }
         }
+        
+        onCloseFragmentListener?.onCloseFragment()
     }
 
     private fun decrementPassengerCount(dialogView: View, fixedPassengerCount: Int) {

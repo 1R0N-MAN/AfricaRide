@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
-class DriverListsPage : Fragment() {
+class DriverListsPage : Fragment(), DriverListRecyclerAdapter.OnCloseFragmentListener {
 
     private lateinit var driverListRecyclerAdapter: DriverListRecyclerAdapter
 
@@ -25,6 +26,8 @@ class DriverListsPage : Fragment() {
         if (driverDetailsList != null) {
             val driverListRecyclerView = view.findViewById<RecyclerView>(R.id.driverListRecyclerView)
             driverListRecyclerAdapter = DriverListRecyclerAdapter(requireContext(), requireActivity(), driverDetailsList)
+            driverListRecyclerAdapter.setOnCloseFragmentListener(this)
+
             driverListRecyclerView.adapter = driverListRecyclerAdapter
 
             Log.d(TAG, "Driver List: $driverDetailsList")
@@ -35,5 +38,9 @@ class DriverListsPage : Fragment() {
             Toast.makeText(context, "Driver list not found", Toast.LENGTH_SHORT).show()
         }
         return view
+    }
+
+    override fun onCloseFragment() {
+        findNavController().navigateUp()
     }
 }
