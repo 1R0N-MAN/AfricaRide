@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/app_page_padding">
+
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/payment_details"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/blue_200"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/cardNumberTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/card_number"
+        android:textSize="@dimen/app_normal_text_size"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@id/pageTitle"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cardNumberTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:boxBackgroundMode="none"
+        app:layout_constraintTop_toBottomOf="@id/cardNumberTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/app_normal_text_size"
+            android:textColorHighlight="@color/purple_200"
+            android:background="@drawable/edit_text_oval_bg"
+            android:inputType="number"
+            android:maxLength="16"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/cardHolderNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/cardholder_name"
+        android:textSize="@dimen/app_normal_text_size"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@id/cardNumberTextInputLayout"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cardHolderNameTextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/cardHolderNameTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardHolderNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/app_normal_text_size"
+            android:textColorHighlight="@color/purple_200"
+            android:background="@drawable/edit_text_oval_bg"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/expiryDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/expiry_date"
+        android:textSize="@dimen/app_normal_text_size"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardHolderNameTextInputLayout"/>
+
+    <LinearLayout
+        android:id="@+id/expiryDateLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:layout_marginEnd="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/cvvTextInputLayout"
+        app:layout_constraintTop_toBottomOf="@id/expiryDateTextView"
+        android:baselineAligned="false">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/expiryMonthTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="3"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expiryMonthEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:hint="@string/expiry_month_hint_text"
+                android:padding="@dimen/app_normal_text_size"
+                android:textColorHighlight="@color/purple_200"
+                android:background="@drawable/edit_text_oval_bg"
+                android:maxLength="2"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/expiryYearTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expiryYearEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginStart="4dp"
+                android:textColorHint="@color/purple_700"
+                android:hint="@string/expiry_year_hint_text"
+                android:padding="@dimen/app_normal_text_size"
+                android:textColorHighlight="@color/purple_200"
+                android:background="@drawable/edit_text_oval_bg"
+                android:maxLength="4"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cvvTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:text="@string/cvv"
+        android:textSize="@dimen/app_normal_text_size"
+        android:textColor="@color/purple_500"
+        android:fontFamily="@font/montserrat_regular"
+        app:layout_constraintTop_toBottomOf="@id/cardHolderNameTextInputLayout"
+        app:layout_constraintStart_toStartOf="@id/cvvTextInputLayout"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cvvTextInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_margin_size"
+        android:layout_marginStart="4dp"
+        app:layout_constraintWidth_percent="0.4"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintStart_toEndOf="@id/expiryDateLinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expiryDateTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cvvEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/app_normal_text_size"
+            android:textColorHighlight="@color/purple_200"
+            android:background="@drawable/edit_text_oval_bg"
+            android:maxLength="4"
+            android:inputType="number" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/makePaymentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_page_padding"
+        android:background="@drawable/oval_button"
+        android:text="@string/make_payment"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_bold"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/cvvTextInputLayout"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

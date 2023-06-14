@@ -104,7 +104,7 @@ class DriverListRecyclerAdapter(
 
         nextButton.setOnClickListener {
             val passengerCount = passengerCountTextView.text.toString().toInt()
-            bookVehicle(driverId, "public", passengerCount, fixedPassengerCount)
+            showPrice(driverId, "public", passengerCount, fixedPassengerCount)
         }
 
         dialogBuilder.setView(dialogView)
@@ -142,7 +142,70 @@ class DriverListRecyclerAdapter(
             val destinationAddress = destinationAddressTextInput.text.toString()
             val phoneNumber = phoneNumberTextInput.text.toString()
 
-            bookVehicle(driverId, "private", passengerCount, fixedPassengerCount, pickupAddress, destinationAddress, phoneNumber)
+            showPrice(driverId, "private", passengerCount, fixedPassengerCount, pickupAddress, destinationAddress, phoneNumber)
+        }
+
+        dialogBuilder.setView(dialogView)
+        dialog = dialogBuilder.create()
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    private fun showPrice(
+        driverId: String,
+        driverType: String,
+        passengerCount: Int,
+        fixedPassengerCount: Int,
+        pickupAddress: String? = null,
+        destinationAddress: String? = null,
+        phoneNumber: String? = null)
+    {
+        dialog.dismiss()
+        val dialogBuilder = AlertDialog.Builder(context)
+        val inflater = activity.layoutInflater
+        val dialogView = inflater.inflate(R.layout.ride_price_dialog_layout, null)
+
+        val rideCostTextView = dialogView.findViewById<TextView>(R.id.rideCostTextView)
+        val proceedToPaymentButton = dialogView.findViewById<Button>(R.id.proceedToPaymentButton)
+        val cancelButton = dialogView.findViewById<ImageButton>(R.id.cancelButton)
+
+        val rideCost = 5000.00
+        rideCostTextView.text = context.getString(R.string.price_placeholder, rideCost)
+
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+            changeDriverIsActiveStatus(driverId, true)
+        }
+
+        proceedToPaymentButton.setOnClickListener {
+            dialog.dismiss()
+            openCardDetailsDialog(driverId, driverType, passengerCount, fixedPassengerCount, pickupAddress, destinationAddress, phoneNumber)
+        }
+
+        dialogBuilder.setView(dialogView)
+        dialog = dialogBuilder.create()
+        dialog.setCancelable(false)
+        dialog.show()
+    }
+
+    private fun openCardDetailsDialog(
+        driverId: String,
+        driverType: String,
+        passengerCount: Int,
+        fixedPassengerCount: Int,
+        pickupAddress: String? = null,
+        destinationAddress: String? = null,
+        phoneNumber: String? = null
+    ){
+        val dialogBuilder = AlertDialog.Builder(context)
+        val inflater = activity.layoutInflater
+        val dialogView = inflater.inflate(R.layout.card_details_dialog_layout, null)
+
+        val makePaymentButton = dialogView.findViewById<Button>(R.id.makePaymentButton)
+
+        makePaymentButton.setOnClickListener {
+            dialog.dismiss()
+            bookVehicle(driverId, driverType, passengerCount, fixedPassengerCount, pickupAddress, destinationAddress, phoneNumber)
         }
 
         dialogBuilder.setView(dialogView)

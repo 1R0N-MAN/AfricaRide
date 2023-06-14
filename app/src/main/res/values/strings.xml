@@ -69,5 +69,17 @@
     <string name="next">next</string>
     <string name="pick_up_address">Pick up Address</string>
     <string name="destination_address">Destination Address</string>
+    <string name="ride_cost">This ride will cost:</string>
+    <string name="proceed_to_payment">Proceed to Payment</string>
+    <string name="dummy_price">\u20A6 5000</string>
+    <string name="price_placeholder">\u20A6 %f</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="cardholder_name">CardHolder Name</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="cvv">CVV</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiry_month_hint_text">MM</string>
+    <string name="expiry_year_hint_text">YYYY</string>
 
 </resources>
