@@ -111,8 +111,12 @@ class FindADriverPage : Fragment() {
         val userData = db.collection(MY_PROFILE_DATA_PATH).document("${auth.uid}")
         userData.get()
             .addOnSuccessListener { result ->
-                val stateOfResidencePosition = result["stateOfResidencePosition"].toString().toInt()
-                inflateStateSpinners(stateOfResidencePosition)
+                val stateOfResidencePosition = result["stateOfResidencePosition"]
+                if (stateOfResidencePosition != null) {
+                    inflateStateSpinners(stateOfResidencePosition.toString().toInt())
+                } else {
+                    inflateStateSpinners(0)
+                }
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting user data!", exception)

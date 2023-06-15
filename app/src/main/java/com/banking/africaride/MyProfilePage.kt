@@ -54,8 +54,8 @@ class MyProfilePage : Fragment() {
         userData.get()
             .addOnSuccessListener { result ->
                 Log.d(TAG, "Result: ${result.data}")
-                val phoneNumber = result["phoneNumber"].toString()
-                val stateOfResidencePosition = result["stateOfResidencePosition"].toString().toInt()
+                val phoneNumber = result["phoneNumber"]
+                val stateOfResidencePosition = result["stateOfResidencePosition"]
                 loadUI(phoneNumber, stateOfResidencePosition)
             }
             .addOnFailureListener { exception ->
@@ -63,7 +63,7 @@ class MyProfilePage : Fragment() {
             }
     }
 
-    private fun loadUI(phoneNumber: String, stateOfResidencePosition: Int) {
+    private fun loadUI(phoneNumber: Any?, stateOfResidencePosition: Any?) {
         val user = auth.currentUser
 
         val username = user?.displayName
@@ -72,8 +72,15 @@ class MyProfilePage : Fragment() {
         val email = user?.email
         emailInput.setText(email)
 
-        phoneNumberInput.setText(phoneNumber)
-        inflateSpinner(stateOfResidencePosition)
+        if (phoneNumber != null) {
+            phoneNumberInput.setText(phoneNumber.toString())
+        }
+
+        if (stateOfResidencePosition != null) {
+            inflateSpinner(stateOfResidencePosition.toString().toInt())
+        } else {
+            inflateSpinner(0)
+        }
     }
 
     private fun inflateSpinner(stateOfResidencePosition: Int) {
